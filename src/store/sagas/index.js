@@ -1,4 +1,4 @@
-import {all, takeEvery} from "redux-saga/effects"
+import {all, takeEvery, takeLatest} from "redux-saga/effects"
 import {logoutSaga, checkAuthTimeoutSaga, authUserSaga, authCheckStateSaga} from "./auth"
 import {
   AUTH_CHECK_INITIAL_STATE,
@@ -11,10 +11,12 @@ import {initIngredientsSaga} from "./burgerBuilder"
 import {fetchOrdersSaga, purchaseBurgerSaga} from "./order"
 
 export function* watchAuth() {
-  yield takeEvery(AUTH_CHECK_TIMEOUT, checkAuthTimeoutSaga)
-  yield takeEvery(AUTH_INITIATE_LOGOUT, logoutSaga)
-  yield takeEvery(AUTH_USER, authUserSaga)
-  yield takeEvery(AUTH_CHECK_INITIAL_STATE, authCheckStateSaga)
+  yield all([
+    takeEvery(AUTH_CHECK_TIMEOUT, checkAuthTimeoutSaga),
+    takeEvery(AUTH_INITIATE_LOGOUT, logoutSaga),
+    takeEvery(AUTH_USER, authUserSaga),
+    takeEvery(AUTH_CHECK_INITIAL_STATE, authCheckStateSaga)
+  ])
 }
 
 export function* watchBurgerBuilder() {
@@ -22,6 +24,6 @@ export function* watchBurgerBuilder() {
 }
 
 export function* watchOrder() {
-  yield takeEvery(PURCHASE_BURGER_FETCH, purchaseBurgerSaga)
+  yield takeLatest(PURCHASE_BURGER_FETCH, purchaseBurgerSaga)
   yield takeEvery(FETCH_ORDERS, fetchOrdersSaga)
 }
