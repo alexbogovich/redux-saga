@@ -1,3 +1,5 @@
+import {logoutSucceed} from "./auth"
+
 export {
     addIngredient,
     removeIngredient,
@@ -12,5 +14,6 @@ export {
     auth,
     logout,
     setAuthRedirectPath,
-    authCheckState
+    authCheckState,
+    logoutSucceed
 } from './auth';
