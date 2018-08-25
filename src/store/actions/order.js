@@ -40,17 +40,17 @@ export const purchaseInit = () => ({
   type: PURCHASE_INIT,
 })
 
-const fetchOrdersSuccess = orders => ({
+export const fetchOrdersSuccess = orders => ({
   type: FETCH_ORDERS_SUCCESS,
   orders: orders,
 })
 
-const fetchOrdersFail = err => ({
+export const fetchOrdersFail = err => ({
   type: FETCH_ORDERS_FAIL,
   error: err,
 })
 
-const fetchOrdersStart = () => ({
+export const fetchOrdersStart = () => ({
   type: FETCH_ORDERS_START,
 })
 
