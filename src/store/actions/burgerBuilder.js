@@ -1,7 +1,7 @@
-import axios from "../../axios-orders"
 import {
   ADD_INGREDIENT,
   FETCH_INGREDIENTS_FAILED,
+  FETCH_INGREDIENTS_INIT,
   REMOVE_INGREDIENT,
   SET_INGREDIENTS,
 } from "./actionTypes"
@@ -25,8 +25,6 @@ export const fetchIngredientsFailed = () => ({
   type: FETCH_INGREDIENTS_FAILED,
 })
 
-export const initIngredients = () => dispatch => {
-  axios.get("https://react-my-burger-95879.firebaseio.com/ingredients.json")
-    .then(r => dispatch(setIngredients(r.data)))
-    .catch(e => dispatch(fetchIngredientsFailed()))
-}
+export const initIngredients = () => ({
+  type: FETCH_INGREDIENTS_INIT
+})
